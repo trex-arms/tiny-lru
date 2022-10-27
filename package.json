@@ -1,15 +1,15 @@
 {
-  "name": "tiny-lru",
-  "description": "Tiny LRU cache for Client or Server",
+  "name": "@trex-arms/tiny-lru",
+  "description": "Fork of Tiny LRU cache for Client or Server",
   "version": "9.0.3",
-  "homepage": "https://github.com/avoidwork/tiny-lru",
+  "homepage": "https://github.com/trex-arms/tiny-lru",
   "author": "Jason Mulligan <jason.mulligan@avoidwork.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/avoidwork/tiny-lru.git"
+    "url": "git://github.com/trex-arms/tiny-lru.git"
   },
   "bugs": {
-    "url": "https://github.com/avoidwork/tiny-lru/issues"
+    "url": "https://github.com/trex-arms/tiny-lru/issues"
   },
   "files": [
     "dist",

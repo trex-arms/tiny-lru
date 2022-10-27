@@ -1,9 +1,13 @@
+# This library is a fork of [`tiny-lru`](https://github.com/avoidwork/tiny-lru)
+
+It's `tiny-lru@9.0.3` with [this one change](https://github.com/trex-arms/tiny-lru/commit/495e2b7481d4a3255f92931484318656dc157a9d) to prevent a case where a call to `cache.has(key)` could return `true` and then you could call `cache.get(key)` immediately afterwards and have it return undefined.
+
 # Tiny LRU
 
 Least Recently Used cache for Client or Server.
 
 ```javascript
-import {lru} from "tiny-lru";
+import {lru} from "@trex-arms/tiny-lru";
 const cache = lru(max, ttl = 0);
 ```
 
