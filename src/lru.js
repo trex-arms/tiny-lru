@@ -68,20 +68,14 @@ class LRU {
 	}
 
 	get (key) {
-		let result;
-
 		if (this.has(key)) {
-			const item = this.items[key];
+			const result = this.items[key];
+			this.set(key, result, true);
 
-			if (this.ttl > 0 && item.expiry <= new Date().getTime()) {
-				this.delete(key);
-			} else {
-				result = item.value;
-				this.set(key, result, true);
-			}
+			return result;
 		}
 
-		return result;
+		return undefined;
 	}
 
 	keys () {
