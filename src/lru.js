@@ -1,11 +1,10 @@
 class LRU {
-	constructor (max = 0, ttl = 0) {
+	constructor (max = 0) {
 		this.first = null;
 		this.items = Object.create(null);
 		this.last = null;
 		this.max = max;
 		this.size = 0;
-		this.ttl = ttl;
 	}
 
 	has (key) {
@@ -68,20 +67,14 @@ class LRU {
 	}
 
 	get (key) {
-		let result;
-
 		if (this.has(key)) {
-			const item = this.items[key];
+			const result = this.items[key];
+			this.set(key, result, true);
 
-			if (this.ttl > 0 && item.expiry <= new Date().getTime()) {
-				this.delete(key);
-			} else {
-				result = item.value;
-				this.set(key, result, true);
-			}
+			return result;
 		}
 
-		return result;
+		return undefined;
 	}
 
 	keys () {
@@ -122,7 +115,6 @@ class LRU {
 			}
 
 			item = this.items[key] = {
-				expiry: this.ttl > 0 ? new Date().getTime() + this.ttl : this.ttl,
 				key: key,
 				prev: this.last,
 				next: null,
@@ -142,14 +134,10 @@ class LRU {
 	}
 }
 
-export function lru (max = 1000, ttl = 0) {
+export function lru (max = 1000) {
 	if (isNaN(max) || max < 0) {
 		throw new TypeError("Invalid max value");
 	}
 
-	if (isNaN(ttl) || ttl < 0) {
-		throw new TypeError("Invalid ttl value");
-	}
-
-	return new LRU(max, ttl);
+	return new LRU(max);
 }
